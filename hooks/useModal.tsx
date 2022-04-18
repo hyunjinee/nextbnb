@@ -37,6 +37,7 @@ const useModal = () => {
             role="presentation"
             onClick={closeModal}
           />
+          {children}
         </Container>,
         ref.current
       );
