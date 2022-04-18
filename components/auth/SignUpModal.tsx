@@ -10,6 +10,8 @@ import PersonIcon from '../../public/static/svg/auth/person.svg';
 import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
 import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
 import { dayList, monthList, yearList } from '../../lib/staticData';
+import Button from '../common/Button';
+import { signupAPI } from '../../lib/api/auth';
 
 const SignUpModal: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -51,6 +53,26 @@ const SignUpModal: React.FC = () => {
 
   const onChangeBirthDay = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthDay(event.target.value);
+  };
+
+  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const signUpBody = {
+      email,
+      lastname,
+      firstname,
+      password,
+      birthday: new Date(
+        `${birthYear}-${birthMonth!.replace('월', '')}-${birthDay}`
+      ).toISOString(),
+    };
+
+    try {
+      await signupAPI(signUpBody);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -132,6 +154,9 @@ const SignUpModal: React.FC = () => {
           />
         </div>
       </div>
+      <div className="sign-up-modal-submit-button-wrapper">
+        <Button type="submit">가입하기</Button>
+      </div>
     </Container>
   );
 };
@@ -180,6 +205,12 @@ const Container = styled.div`
     .sign-up-modal-birthday-year-selector {
       width: 33.3333%;
     }
+  }
+
+  .sign-up-modal-submit-button-wrapper {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid ${palette.gray_eb};
   }
 `;
 
