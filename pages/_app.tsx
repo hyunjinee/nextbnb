@@ -1,8 +1,16 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from 'next/app';
+import Header from '../components/Header';
+import GlobalStyle from '../styles/GlobalStyle';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <GlobalStyle />
+      <Header />
+      <Component {...pageProps} />
+      <div id="root-modal"></div>
+    </>
+  );
 }
 
-export default MyApp
+export default MyApp;
