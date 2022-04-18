@@ -28,6 +28,7 @@ module.exports = {
     'arrow-body-style': 'off', // 화살표 함수안에 return을 사용할 수 있다.
     'operator-linebreak': 'off',
     'import/prefer-default-export': 'off',
+    'import/newline-after-import': 'off',
     'implicit-arrow-linebreak': 'off',
     'react/jsx-filename-extension': [
       1,

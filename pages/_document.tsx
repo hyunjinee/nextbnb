@@ -1,3 +1,4 @@
+/* eslint-disable lines-between-class-members */
 import Document, {
   Html,
   Head,
