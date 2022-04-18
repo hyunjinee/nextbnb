@@ -7,7 +7,7 @@ import AirbnbLogoIcon from '../public/static/svg/logo/logo.svg';
 import AirbnbLogoTextIcon from '../public/static/svg/logo/logo_text.svg';
 
 const Header: React.FC = () => {
-  const { openModal, ModalPortal } = useModal();
+  const { openModal, closeModal, ModalPortal } = useModal();
 
   return (
     <Container>
@@ -32,7 +32,7 @@ const Header: React.FC = () => {
       </div>
 
       <ModalPortal>
-        <SignUpModal />
+        <SignUpModal closeModal={closeModal} />
       </ModalPortal>
     </Container>
   );

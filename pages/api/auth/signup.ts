@@ -1,13 +1,14 @@
 /* eslint-disable import/order */
 import { NextApiRequest, NextApiResponse } from 'next';
-import Data from '../../lib/data';
+import Data from '../../../lib/data';
 import bcrypt from 'bcryptjs';
-import { StoredUserType } from '../../types/user';
+import { StoredUserType } from '../../../types/user';
 import jwt from 'jsonwebtoken';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { email, firstname, lastname, password, birthday } = req.body;
+
     if (!email || !firstname || !lastname || !password || !birthday) {
       res.statusCode = 400;
       return res.send('필수 데이터가 없습니다.');

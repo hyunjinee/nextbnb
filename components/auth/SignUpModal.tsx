@@ -13,7 +13,11 @@ import { dayList, monthList, yearList } from '../../lib/staticData';
 import Button from '../common/Button';
 import { signupAPI } from '../../lib/api/auth';
 
-const SignUpModal: React.FC = () => {
+interface IProps {
+  closeModal: () => void;
+}
+
+const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstname, setFirstname] = useState('');
@@ -71,13 +75,14 @@ const SignUpModal: React.FC = () => {
     try {
       await signupAPI(signUpBody);
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   };
 
   return (
-    <Container>
-      <CloseXIcon className="modal-close-x-icon" />
+    <Container onSubmit={onSubmitSignUp}>
+      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input
           type="email"
@@ -161,7 +166,7 @@ const SignUpModal: React.FC = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.form`
   width: 568px;
   height: 614px;
   padding: 32px;

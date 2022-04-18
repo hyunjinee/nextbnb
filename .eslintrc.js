@@ -30,6 +30,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'import/newline-after-import': 'off',
     'implicit-arrow-linebreak': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
+
     'react/jsx-filename-extension': [
       1,
       { extensions: ['.js', 'jsx', '.tsx'] }, // jsx 사용 가능한 확장자 설정
