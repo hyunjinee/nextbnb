@@ -44,6 +44,7 @@ const useModal = () => {
     }
     return null;
   };
+
   return { openModal, closeModal, ModalPortal };
 };
 

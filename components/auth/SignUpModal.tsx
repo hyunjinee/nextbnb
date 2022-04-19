@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import Input from '../common/Input';
 import palette from '../../styles/palette';
@@ -12,6 +13,7 @@ import OpenedEyeIcon from '../../public/static/svg/auth/opened-eye.svg';
 import { dayList, monthList, yearList } from '../../lib/staticData';
 import Button from '../common/Button';
 import { signupAPI } from '../../lib/api/auth';
+import { userActions } from '../../store/user';
 
 interface IProps {
   closeModal: () => void;
@@ -26,6 +28,8 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [birthYear, setBirthYear] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
+
+  const dispatch = useDispatch();
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -73,7 +77,10 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     };
 
     try {
-      await signupAPI(signUpBody);
+      const { data } = await signupAPI(signUpBody);
+      dispatch(userActions.setLoggedUser(data));
+
+      closeModal();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);

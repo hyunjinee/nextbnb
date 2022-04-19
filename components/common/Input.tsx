@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from '../../styles/palette';
 
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
