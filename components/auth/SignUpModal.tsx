@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 
@@ -19,15 +19,26 @@ interface IProps {
   closeModal: () => void;
 }
 
+const PASSWORD_MIN_LENGTH = 8;
+//* 선택할 수 없는 월 option
+const disabledMoths = ['월'];
+//* 선택할 수 없는 일 option
+const disabledDays = ['일'];
+//* 선택할 수 없는 년 option
+const disabledYears = ['년'];
+
 const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [hidePassword, setHidePassword] = useState(true);
+
   const [birthYear, setBirthYear] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
+
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -51,6 +62,11 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     setHidePassword(!hidePassword);
   };
 
+  //* 비밀번호 인풋 포커스 되었을때
+  const onFocusPassword = useCallback(() => {
+    setPasswordFocused(true);
+  }, []);
+
   const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setBirthYear(event.target.value);
   };
@@ -63,27 +79,78 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     setBirthDay(event.target.value);
   };
 
+  //* password가 이름이나 이메일을 포함하는지
+  const isPasswordHasNameOrEmail = useMemo(
+    () =>
+      !password ||
+      !lastname ||
+      password.includes(lastname) ||
+      password.includes(email.split('@')[0]),
+    [password, lastname, email]
+  );
+
+  //* 비밀번호가 최수 자리수 이상인지
+  const isPasswordOverMinLength = useMemo(
+    () => password.length >= PASSWORD_MIN_LENGTH,
+    [password]
+  );
+
+  const isPasswordHasNumberOrSymbol = useMemo(
+    () =>
+      !(
+        /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
+        /[0-9]/g.test(password)
+      ),
+    [password]
+  );
+
+  //* 회원가입 폼 입력 값 확인하기
+  const validateSignUpForm = () => {
+    //* 인풋 값이 없다면
+    if (!email || !lastname || !firstname || !password) {
+      return false;
+    }
+    //* 비밀번호가 올바르지 않다면
+    if (
+      isPasswordHasNameOrEmail ||
+      !isPasswordOverMinLength ||
+      isPasswordHasNumberOrSymbol
+    ) {
+      return false;
+    }
+    //* 생년월일 셀렉터 값이 없다면
+    if (!birthDay || !birthMonth || !birthYear) {
+      return false;
+    }
+    return true;
+  };
+
+  //* 회원가입 폼 제출하기
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const signUpBody = {
-      email,
-      lastname,
-      firstname,
-      password,
-      birthday: new Date(
-        `${birthYear}-${birthMonth!.replace('월', '')}-${birthDay}`
-      ).toISOString(),
-    };
+    // setValidateMode(true);
 
-    try {
-      const { data } = await signupAPI(signUpBody);
-      dispatch(userActions.setLoggedUser(data));
+    if (validateSignUpForm()) {
+      try {
+        const signUpBody = {
+          email,
+          lastname,
+          firstname,
+          password,
+          birthday: new Date(
+            `${birthYear}-${birthMonth!.replace('월', '')}-${birthDay}`
+          ).toISOString(),
+        };
+        const { data } = await signupAPI(signUpBody);
 
-      closeModal();
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+        dispatch(userActions.setLoggedUser(data));
+
+        closeModal();
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.log(e);
+      }
     }
   };
 
@@ -96,8 +163,12 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           name="email"
           value={email}
           icon={<MailIcon />}
+          isValid={!!email}
           placeholder="이메일 주소"
           onChange={onChangeEmail}
+          useValidation
+          // validateMode={}
+          errorMessage="이메일이 필요합니다."
         />
       </div>
       <div className="input-wrapper">
@@ -105,7 +176,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           value={lastname}
           icon={<PersonIcon />}
           placeholder="이름(예:길동)"
+          useValidation
           onChange={onChangeLastname}
+          errorMessage="이름을 입력해주세요."
         />
       </div>
       <div className="input-wrapper">
@@ -113,7 +186,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           value={firstname}
           icon={<PersonIcon />}
           placeholder="성(예: 홍)"
+          useValidation
           onChange={onChangeFirstname}
+          errorMessage="성을 입력하세요."
         />
       </div>
       <div className="input-wrapper sign-up-password-input-wrapper">
@@ -130,6 +205,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           }
           placeholder="비밀번호 설정하기"
           onChange={onChangePassword}
+          useValidation
+          errorMessage="비밀번호를 입력하세요"
+          onFocus={onFocusPassword}
         />
       </div>
       <p className="sign-up-birthday-label">생일</p>
