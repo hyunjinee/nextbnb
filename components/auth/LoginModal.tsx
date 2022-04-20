@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
-import CloseXIcon from '../../public/static/svg/modal/modal_close_x_icon.svg';
+import Input from '../common/Input';
+import Button from '../common/Button';
+import palette from '../../styles/palette';
 import MailIcon from '../../public/static/svg/auth/mail.svg';
+import CloseXIcon from '../../public/static/svg/modal/modal_close_x_icon.svg';
 import OpenedEyeIcon from '../../public/static/svg/auth/opened_eye.svg';
 import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
-import palette from '../../styles/palette';
-import Button from '../common/Button';
-import Input from '../common/Input';
-import { useDispatch } from 'react-redux';
+import useValidateMode from '../../hooks/useValidateMode';
+import { loginAPI } from '../../lib/api/auth';
+import { userActions } from '../../store/user';
 import { authActions } from '../../store/auth';
 
 interface IProps {
@@ -21,6 +24,13 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
   const [isPasswordHided, setIsPasswordHided] = useState(true);
 
   const dispatch = useDispatch();
+  const { setValidateMode } = useValidateMode();
+
+  useEffect(() => {
+    return () => {
+      setValidateMode(false);
+    };
+  }, []);
 
   const onChnageEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -38,8 +48,28 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
     dispatch(authActions.setAuthMode('signup'));
   };
 
+  const onSubmitLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setValidateMode(true);
+
+    if (!email || !password) {
+      // eslint-disable-next-line no-alert
+      alert('이메일과 비밀번호를 입력해주세요.');
+    } else {
+      const loginBody = { email, password };
+
+      try {
+        const { data } = await loginAPI(loginBody);
+        dispatch(userActions.setLoggedUser(data));
+        closeModal();
+      } catch (error: any) {
+        console.log(error.response);
+      }
+    }
+  };
+
   return (
-    <Container>
+    <Container onSubmit={onSubmitLogin}>
       <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="login-input-wrapper">
         <Input
@@ -48,7 +78,9 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
           type="email"
           icon={<MailIcon />}
           value={email}
+          isValid={email !== ''}
           onChange={onChnageEmail}
+          errorMessage="이메일이 필요합니다."
         />
       </div>
       <div className="login-input-wrapper">
@@ -63,7 +95,9 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
             )
           }
           value={password}
+          isValid={password !== ''}
           onChange={onChangePassword}
+          errorMessage="비밀번호를 입력하세요."
         />
       </div>
       <div className="login-modal-submit-button-wrapper">

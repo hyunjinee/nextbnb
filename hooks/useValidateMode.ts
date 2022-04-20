@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../store';
 
+import { useSelector } from '../store';
 import { commonActions } from '../store/common';
 
 const useValidateMode = () => {

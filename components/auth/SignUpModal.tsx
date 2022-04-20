@@ -46,6 +46,12 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const dispatch = useDispatch();
   const { setValidateMode } = useValidateMode();
 
+  useEffect(() => {
+    return () => {
+      setValidateMode(false);
+    };
+  }, []);
+
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -162,12 +168,6 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const changeToLoginModal = () => {
     dispatch(authActions.setAuthMode('login'));
   };
-
-  useEffect(() => {
-    return () => {
-      setValidateMode(false);
-    };
-  });
 
   return (
     <Container onSubmit={onSubmitSignUp}>

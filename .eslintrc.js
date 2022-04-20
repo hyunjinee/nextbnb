@@ -19,8 +19,8 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 'off',
     'no-unused-vars': 'off', // 사용 안 한 변수 경고 중복
     'space-comment': 'off', // 주석 뒤에 쓰지 말라는 경고
-    'no-console': 'error', // 콘솔 사용 경고
-    'no-alert': 'error', // alert 사용 경rh
+    'no-console': 'off', // 콘솔 사용 가능
+    'no-alert': 'error', // alert 사용 경고
     'react/no-array-index-key': 'off', // key 값으로 index 사용가능
     'comma-dangle': 'off', // 마지막 콤마 없애기
     'react/jsx-one-expression-per-line': 'off', // 한 줄에 하나의 여러개의 JSX사용가능
@@ -46,6 +46,7 @@ module.exports = {
     'import-order': 'off', // import 순서 지정 끔
     'no-trailing-spaces': 'off',
     'no-param-reassign': 'off',
+
     'import/extensions': [
       'error',
       'ignorePackages',

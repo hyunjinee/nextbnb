@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { UserType } from '../types/user';
 import { UserState } from '../types/reduxState';
 
@@ -19,6 +20,10 @@ const user = createSlice({
     setLoggedUser(state, action: PayloadAction<UserType>) {
       // eslint-disable-next-line no-param-reassign
       state = { ...action.payload, isLogged: true };
+      return state;
+    },
+    initUser(state) {
+      state = initialState;
       return state;
     },
   },
