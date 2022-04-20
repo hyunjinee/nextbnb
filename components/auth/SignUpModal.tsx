@@ -11,11 +11,11 @@ import CloseXIcon from '../../public/static/svg/modal/modal_close_x_icon.svg';
 import PersonIcon from '../../public/static/svg/auth/person.svg';
 import ClosedEyeIcon from '../../public/static/svg/auth/closed_eye.svg';
 import OpenedEyeIcon from '../../public/static/svg/auth/opened_eye.svg';
+import PasswordWarning from './PasswordWarning';
 import useValidateMode from '../../hooks/useValidateMode';
 import { dayList, monthList, yearList } from '../../lib/staticData';
 import { signupAPI } from '../../lib/api/auth';
 import { userActions } from '../../store/user';
-import PasswordWarning from './PasswordWarning';
 import { authActions } from '../../store/auth';
 
 interface IProps {
@@ -47,6 +47,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const { setValidateMode } = useValidateMode();
 
   useEffect(() => {
+    setValidateMode(true);
     return () => {
       setValidateMode(false);
     };

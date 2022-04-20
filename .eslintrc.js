@@ -47,7 +47,7 @@ module.exports = {
     'import-order': 'off', // import 순서 지정 끔
     'no-trailing-spaces': 'off',
     'no-param-reassign': 'off',
-
+    'jsx-a11y/label-has-associated-control': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

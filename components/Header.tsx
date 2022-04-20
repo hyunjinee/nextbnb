@@ -16,19 +16,7 @@ import HeaderAuths from './HeaderAuth';
 import HeaderUserProfile from './HeaderUserProfile';
 
 const Header: React.FC = () => {
-  const [isUsermenuOpened, setIsUsermenuOpened] = useState(false);
-
-  const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.user.isLogged);
-
-  const logout = async () => {
-    try {
-      await logoutAPI();
-      dispatch(userActions.initUser());
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  };
 
   return (
     <Container>
@@ -41,10 +29,6 @@ const Header: React.FC = () => {
 
       {!isLogged && <HeaderAuths />}
       {isLogged && <HeaderUserProfile />}
-
-      {/* <ModalPortal>
-        <AuthModal closeModal={closeModal} />
-      </ModalPortal> */}
     </Container>
   );
 };
