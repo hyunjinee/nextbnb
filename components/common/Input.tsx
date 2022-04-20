@@ -29,29 +29,36 @@ const Input: React.FC<IProps> = ({
       isValid={isValid}
       useValidation={!!validateMode && useValidation}
     >
-      {icon}
       <input {...props} />
-
-      <p className="input-error-message">{errorMessage}</p>
+      {icon}
+      {useValidation && validateMode && !isValid && errorMessage && (
+        <p className="input-error-message">{errorMessage}</p>
+      )}
     </Container>
   );
 };
 
 const Container = styled.div<InputContainerProps>`
+  label {
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
   input {
     position: relative;
     width: 100%;
     height: 46px;
-    padding: ${({ iconExist }) => (iconExist ? '0 44px 0 11px' : '0 11px')};
+    padding: ${({ iconExist }) => (iconExist ? '0 44px 0 11px ' : '0 11px')};
     border: 1px solid ${palette.gray_eb};
     border-radius: 4px;
-    outline: none;
     font-size: 16px;
-    ::placeholder {
+    outline: none;
+    & ::placeholder {
       color: ${palette.gray_76};
     }
-    &:focus {
-      border-color: ${palette.dark_cyan} !important;
+    & :focus {
+      border-color: ${palette.dark_cyan};
     }
   }
   svg {

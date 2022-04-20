@@ -31,6 +31,7 @@ module.exports = {
     'import/newline-after-import': 'off',
     'implicit-arrow-linebreak': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
+    'no-confusing-arrow': 'off',
 
     'react/jsx-filename-extension': [
       1,
@@ -44,6 +45,7 @@ module.exports = {
     'object-curly-newline': 'off', // { 다음 줄바꿈을 강제로 사용하지 않는다.
     'import-order': 'off', // import 순서 지정 끔
     'no-trailing-spaces': 'off',
+    'no-param-reassign': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',

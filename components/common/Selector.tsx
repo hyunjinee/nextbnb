@@ -1,19 +1,28 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import palette from '../../styles/palette';
-
+import { useSelector } from '../../store';
+import WarningIcon from '../../public/static/svg/common/warning.svg';
 interface IProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   options?: string[];
   disabledOptions?: string[];
   value?: string;
+  isValid?: boolean;
+  useValidation?: boolean;
+  errorMessage?: string;
+  type?: 'register' | 'normal';
 }
 
 const Selector: React.FC<IProps> = ({
   options = [],
   disabledOptions = [],
+  isValid,
+  useValidation = true,
   ...props
 }) => {
+  const validateMode = useSelector((state) => state.common.validateMode);
+
   return (
-    <Container>
+    <Container isValid={!!isValid} validateMode={useValidation && validateMode}>
       <select {...props}>
         {disabledOptions.map((option, index) => (
           <option key={index} value={option} disabled>
@@ -30,7 +39,7 @@ const Selector: React.FC<IProps> = ({
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
   width: 100%;
   height: 46px;
 
