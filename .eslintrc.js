@@ -32,6 +32,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'no-confusing-arrow': 'off',
+    'react/require-default-props': 'off',
 
     'react/jsx-filename-extension': [
       1,

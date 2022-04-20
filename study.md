@@ -9,3 +9,5 @@ ReactDom.createPortal(child, container);
 ```
 
 첫번째 인자로 리액트 컴포넌트를 받고, 두번째 인자로 리액트 컴포넌트를 넣을 DOM을 받는다.
+
+부모컴포넌트 업데이트 -> 자식 컴포넌트 업데이트

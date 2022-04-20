@@ -1,3 +1,4 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
 import palette from '../../styles/palette';
 import { useSelector } from '../../store';
@@ -98,4 +99,4 @@ const Container = styled.div<InputContainerProps>`
     `}
 `;
 
-export default Input;
+export default React.memo(Input);

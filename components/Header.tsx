@@ -1,22 +1,35 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import OutsideClickHandler from 'react-outside-click-handler';
 import { useDispatch } from 'react-redux';
 
 import palette from '../styles/palette';
-import useModal from '../hooks/useModal';
-import AuthModal from './auth/AuthModal';
 import AirbnbLogoIcon from '../public/static/svg/logo/logo.svg';
 import AirbnbLogoTextIcon from '../public/static/svg/logo/logo_text.svg';
 import HamburgerIcon from '../public/static/svg/header/hamburger.svg';
 import { useSelector } from '../store';
 import { authActions } from '../store/auth';
+import { logoutAPI } from '../lib/api/auth';
+import { userActions } from '../store/user';
+import HeaderAuths from './HeaderAuth';
+import HeaderUserProfile from './HeaderUserProfile';
 
 const Header: React.FC = () => {
-  const { openModal, closeModal, ModalPortal } = useModal();
-  // const isLogged = useSelector((state) => state.user.isLogged);
-  const dispatch = useDispatch();
+  const [isUsermenuOpened, setIsUsermenuOpened] = useState(false);
 
-  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const isLogged = useSelector((state) => state.user.isLogged);
+
+  const logout = async () => {
+    try {
+      await logoutAPI();
+      dispatch(userActions.initUser());
+    } catch (error: any) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <Container>
       <Link href="/">
@@ -26,45 +39,12 @@ const Header: React.FC = () => {
         </a>
       </Link>
 
-      {!user.isLogged && (
-        <div className="header-auth-buttons">
-          <button
-            type="button"
-            className="header-sign-up-button"
-            onClick={() => {
-              dispatch(authActions.setAuthMode('signup'));
-              openModal();
-            }}
-          >
-            회원가입
-          </button>
-          <button
-            type="button"
-            className="header-login-button"
-            onClick={() => {
-              dispatch(authActions.setAuthMode('login'));
-              openModal();
-            }}
-          >
-            로그인
-          </button>
-        </div>
-      )}
+      {!isLogged && <HeaderAuths />}
+      {isLogged && <HeaderUserProfile />}
 
-      {user.isLogged && (
-        <button className="header-user-profile" type="button">
-          <HamburgerIcon />
-          <img
-            src={user.profileImage}
-            alt=""
-            className="header-user-profile-image"
-          />
-        </button>
-      )}
-
-      <ModalPortal>
+      {/* <ModalPortal>
         <AuthModal closeModal={closeModal} />
-      </ModalPortal>
+      </ModalPortal> */}
     </Container>
   );
 };
@@ -158,6 +138,38 @@ const Container = styled.div`
       width: 30px;
       height: 30px;
       border-radius: 50%;
+    }
+  }
+
+  .header-logo-wrapper + div {
+    position: relative;
+  }
+
+  .header-usermenu {
+    position: absolute;
+    right: 0;
+    top: 52px;
+    width: 240px;
+    padding: 8px 0;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: white;
+    li {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 42px;
+      padding: 0 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: ${palette.gray_f7};
+      }
+    }
+    .header-usermenu-divider {
+      width: 100%;
+      height: 1px;
+      margin: 8px 0;
+      background-color: ${palette.gray_dd};
     }
   }
 `;

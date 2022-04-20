@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import jwt from 'jsonwebtoken';
-import { StoredUserType } from '../../../types/user';
+
 import Data from '../../../lib/data';
+import { StoredUserType } from '../../../types/user';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
@@ -32,6 +33,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.send(error);
     }
   }
-  res.statusCode = 405;
+  res.statusCode = 405; // method not allowed
   return res.end();
 };

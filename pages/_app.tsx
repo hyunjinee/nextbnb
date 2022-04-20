@@ -6,6 +6,7 @@ import { wrapper } from '../store';
 import { cookieStringToObject } from '../lib/utils';
 import axios from '../lib/api';
 import { meAPI } from '../lib/api/auth';
+import { userActions } from '../store/user';
 
 const app = ({ Component, pageProps }: AppProps) => {
   return (
@@ -31,7 +32,8 @@ app.getInitialProps = async (context: AppContext) => {
     if (!isLogged && cookieObject.access_token) {
       axios.defaults.headers.cookie = cookieObject.access_token;
       const { data } = await meAPI();
-      console.log(data);
+      // console.log(data);
+      store.dispatch(userActions.setLoggedUser(data));
     }
   } catch (error) {
     console.log(error);
