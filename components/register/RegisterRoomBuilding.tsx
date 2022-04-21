@@ -5,11 +5,11 @@ import styled from 'styled-components';
 
 import palette from '../../styles/palette';
 import Selector from '../common/Selector';
+import RadioGroup from '../common/RadioGroup';
+import RegisterRoomFooter from './RegisterRoomFooter';
 import { useSelector } from '../../store';
 import { largeBuildingTypeList } from '../../lib/staticData';
 import { registerRoomActions } from '../../store/registerRoom';
-import RadioGroup from '../common/RadioGroup';
-import RegisterRoomFooter from './RegisterRoomFooter';
 
 const disabledlargeBuildingTypeOptions = ['하나를 선택해주세요.'];
 
