@@ -1,5 +1,6 @@
 import { useSelector } from '../../store';
 import RegisterRoomBedTypes from './RegisterRoomBedTypes';
+import RegisterRoomPublicBedTypes from './RegisterRoomPublicBedTypes';
 
 const RegisterRoomBedList: React.FC = () => {
   const bedList = useSelector((state) => state.registerRoom.bedList);
@@ -9,6 +10,7 @@ const RegisterRoomBedList: React.FC = () => {
       {bedList.map((bedroom) => (
         <RegisterRoomBedTypes key={bedroom.id} bedroom={bedroom} />
       ))}
+      <RegisterRoomPublicBedTypes />
     </ul>
   );
 };
