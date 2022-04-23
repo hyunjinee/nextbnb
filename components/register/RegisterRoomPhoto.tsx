@@ -55,7 +55,7 @@ const RegisterRoomPhoto: React.FC = () => {
       {!isEmpty(photos) && <RegisterRoomPhotoCardList photos={photos} />}
       <RegisterRoomFooter
         prevHref="/room/register/conveniences"
-        nextHref="/room/register/dscription"
+        nextHref="/room/register/description"
       />
     </Container>
   );
