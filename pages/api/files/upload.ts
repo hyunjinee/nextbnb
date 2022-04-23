@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { createReadStream } from 'fs';
-import { v4 as uuidv4 } from 'uuid';
 import aws from 'aws-sdk';
 import formidable from 'formidable';
+import { v4 as uuidv4 } from 'uuid';
+import { createReadStream } from 'fs';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 export const config = {
   api: {
@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     try {
       const form = new formidable.IncomingForm();
       const url = await new Promise((resolve, reject) => {
-        form.parse(req, async (err, fields, files) => {
+        form.parse(req, async (err, fields, files: any) => {
           const s3 = new aws.S3({
             accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
             secretAccessKey: process.env.AWS_SECRET_KEY!,
