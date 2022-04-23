@@ -118,6 +118,9 @@ const Container = styled.button<StyledButtonProps>`
   width: ${(props) => props.width};
   ${(props) => getButtonColor(props.color || '', props.colorReverse)};
   ${(props) => getButtonSize(props.size)}
+  svg {
+    margin-right: 12px;
+  }
 `;
 
 export default React.memo(Button);
