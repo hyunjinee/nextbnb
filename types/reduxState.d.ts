@@ -38,3 +38,21 @@ type RegisterRoomState = {
   startDate: string | null;
   endDate: string | null;
 };
+
+//* 숙소 검색 redux state
+export type SearchRoomState = {
+  location: string;
+  latitude: number;
+  longitude: number;
+  checkInDate: string | null;
+  checkOutDate: string | null;
+  adultCount: number;
+  childrenCount: number;
+  infantsCount: number;
+};
+
+//* 숙소 redux state
+export type RoomState = {
+  rooms: RoomType[];
+  detail: RoomType | null;
+};

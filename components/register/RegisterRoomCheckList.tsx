@@ -1,9 +1,10 @@
 import { useMemo } from 'react';
-import { isEmpty } from 'lodash';
+import { isDate, isEmpty } from 'lodash';
 import styled from 'styled-components';
 import { useSelector } from '../../store';
 import RegisterRoomCheckStep from './RegisterRoomCheckStep';
 import RegisterRoomFooter from './RegisterRoomFooter';
+import RegisterRoomSubmitFooter from './RegisterRoomSubmitFooter';
 
 const RegisterRoomCheckList: React.FC = () => {
   const registerRoom = useSelector((state) => state.registerRoom);
@@ -252,11 +253,15 @@ const RegisterRoomCheckList: React.FC = () => {
           inProgress={stepInProgress === 'date'}
         />
       </ul>
-
-      <RegisterRoomFooter
-        prevHref="/room/register/date"
-        nextHref={`/room/register/${stepInProgress}`}
-      />
+      {isDateActived ? (
+        <RegisterRoomSubmitFooter />
+      ) : (
+        <RegisterRoomFooter
+          prevHref="/room/register/date"
+          nextHref={`/room/register/${stepInProgress}`}
+        />
+      )}
+      {/* <RegisterRoomSubmitFooter /> */}
     </Container>
   );
 };

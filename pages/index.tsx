@@ -1,12 +1,10 @@
+import { NextPage } from 'next';
 import styled from 'styled-components';
 
-const Index: React.FC = () => {
-  return <Container> hidfasfasdf</Container>;
-};
+import Home from '../components/home/Home';
 
-const Container = styled.div`
-  font-size: 21px;
-  color: gray;
-`;
+const Index: NextPage = () => {
+  return <Home />;
+};
 
 export default Index;
