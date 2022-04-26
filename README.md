@@ -1,34 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# nextbnb
 
-## Getting Started
+Next.js를 이용해서 airbnb 사이트를 클론한 프로젝트입니다.
 
-First, run the development server:
+**현재는 GeoCoding API, AWS S3 버킷을 사용할 수 없습니다. (일부 기능이 동작하지 않습니다.)**
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Description
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- nextjs를 **학습**하기 위해 만든 프로젝트
+- redux toolkit을 활용한 전역 상태 관리
+- AWS S3 bucket, Google GeoCoding API 사용
+- Vercel를 통한 서비스 배포
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 어려웠던 점
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+_CSS의 폭격_
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- 최근에 CSS의 부족함을 느껴서 이런 CSS의 양이 많이 들어가는 마크업을 해보고 싶었는데 이 프로젝트를 통해 많이 연습할 수 있었다.
+- CSS의 중요성에 대한생각: 화면에 내가 놓고 싶은 UI를 배치할 수 있어야한다. 1px이라도 달라졌을 때 사용자가 느끼는 경험이 달라질 수 있다.
