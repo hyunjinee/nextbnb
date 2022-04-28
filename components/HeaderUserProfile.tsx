@@ -55,7 +55,7 @@ const HeaderUserProfile: React.FC = () => {
                 setIsUsermenuOpened(false);
               }}
             >
-              <li>숙소 등록하기</li>
+              <li data-cy="room-register">숙소 등록하기</li>
             </a>
           </Link>
           <div className="header-usermenu-divider" />
