@@ -81,6 +81,7 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
           isValid={email !== ''}
           onChange={onChnageEmail}
           errorMessage="이메일이 필요합니다."
+          data-cy="login-email-input"
         />
       </div>
       <div className="login-input-wrapper">
@@ -98,10 +99,11 @@ const LoginModal: React.FC<IProps> = ({ closeModal }) => {
           isValid={password !== ''}
           onChange={onChangePassword}
           errorMessage="비밀번호를 입력하세요."
+          data-cy="login-password-input"
         />
       </div>
       <div className="login-modal-submit-button-wrapper">
-        <Button type="submit" color="bittersweet">
+        <Button type="submit" color="bittersweet" data-cy="login-submit">
           로그인
         </Button>
       </div>

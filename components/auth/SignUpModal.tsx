@@ -184,6 +184,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           onChange={onChangeEmail}
           useValidation
           errorMessage="이메일이 필요합니다."
+          data-cy="signup-email"
         />
       </div>
       <div className="input-wrapper">
@@ -195,6 +196,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           onChange={onChangeLastname}
           errorMessage="이름을 입력해주세요."
           isValid={!!lastname}
+          data-cy="signup-lastname"
         />
       </div>
       <div className="input-wrapper">
@@ -206,6 +208,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           onChange={onChangeFirstname}
           errorMessage="성을 입력하세요."
           isValid={!!firstname}
+          data-cy="signup-firstname"
         />
       </div>
       <div className="input-wrapper sign-up-password-input-wrapper">
@@ -230,6 +233,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           }
           errorMessage="비밀번호를 입력하세요"
           onFocus={onFocusPassword}
+          data-cy="signup-password"
         />
       </div>
       {passwordFocused && (
@@ -259,6 +263,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
             value={birthMonth}
             isValid={!!birthMonth}
             onChange={onChangeBirthMonth}
+            data-cy="signup-birthday-month"
           />
         </div>
         <div className="sign-up-modal-birthday-day-selector">
@@ -269,6 +274,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
             value={birthDay}
             isValid={!!birthDay}
             onChange={onChangeBirthDay}
+            data-cy="signup-birthday-day"
           />
         </div>
         <div className="sign-up-modal-birthday-year-selector">
@@ -279,11 +285,12 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
             value={birthYear}
             isValid={!!birthYear}
             onChange={onChangeBirthYear}
+            data-cy="signup-birthday-year"
           />
         </div>
       </div>
       <div className="sign-up-modal-submit-button-wrapper">
-        <Button type="submit" color="bittersweet">
+        <Button type="submit" color="bittersweet" data-cy="signup-register">
           가입하기
         </Button>
       </div>

@@ -1,18 +1,11 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import OutsideClickHandler from 'react-outside-click-handler';
-import { useDispatch } from 'react-redux';
 
+import { useSelector } from '../store';
 import palette from '../styles/palette';
+import HeaderAuths from './HeaderAuth';
 import AirbnbLogoIcon from '../public/static/svg/logo/logo.svg';
 import AirbnbLogoTextIcon from '../public/static/svg/logo/logo_text.svg';
-import HamburgerIcon from '../public/static/svg/header/hamburger.svg';
-import { useSelector } from '../store';
-import { authActions } from '../store/auth';
-import { logoutAPI } from '../lib/api/auth';
-import { userActions } from '../store/user';
-import HeaderAuths from './HeaderAuth';
 import HeaderUserProfile from './HeaderUserProfile';
 
 const Header: React.FC = () => {
@@ -44,14 +37,17 @@ const Container = styled.div`
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px;
   z-index: 10;
+
   .header-logo-wrapper {
     display: flex;
     align-items: center;
+    margin-left: 80px;
     .header-logo {
       margin-right: 6px;
     }
   }
   .header-auth-buttons {
+    margin-right: 80px;
     .header-sign-up-button {
       height: 42px;
       margin-right: 8px;
@@ -59,6 +55,7 @@ const Container = styled.div`
       border: 0;
       border-radius: 21px;
       background-color: white;
+
       cursor: pointer;
       outline: none;
       &:hover {

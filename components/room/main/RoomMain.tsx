@@ -7,7 +7,8 @@ import { useSelector } from '../../../store';
 import MapIcon from '../../../public/static/svg/room/main/map.svg';
 import palette from '../../../styles/palette';
 import RoomList from './RoomList';
-import RoomListMap from './RoomListMap';
+
+const RoomListMap = dynamic(() => import('./RoomListMap'), { ssr: false });
 
 const RoomMain: React.FC = () => {
   const rooms = useSelector((state) => state.room.rooms);

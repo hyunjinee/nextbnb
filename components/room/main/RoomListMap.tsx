@@ -50,6 +50,7 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
       });
     }
   };
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
