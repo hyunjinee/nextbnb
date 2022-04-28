@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import OutsideClickHandler from 'react-outside-click-handler';
 import { useDispatch } from 'react-redux';
 import Link from 'next/link';
+import OutsideClickHandler from 'react-outside-click-handler';
+
 import { useSelector } from '../store';
 import { logoutAPI } from '../lib/api/auth';
 import { userActions } from '../store/user';
