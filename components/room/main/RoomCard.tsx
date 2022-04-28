@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import differenceInDays from 'date-fns/differenceInDays';
 
-import { RoomType } from '../../../types/room';
 import palette from '../../../styles/palette';
+import { RoomType } from '../../../types/room';
 import { useSelector } from '../../../store';
 import { makeMoneyString } from '../../../lib/utils';
 
