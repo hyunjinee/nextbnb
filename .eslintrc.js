@@ -48,6 +48,7 @@ module.exports = {
     'no-trailing-spaces': 'off',
     'no-param-reassign': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
+    'newline-per-chained-call': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
