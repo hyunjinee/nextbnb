@@ -158,6 +158,7 @@ const RegisterRoomBuilding: React.FC = () => {
           options={largeBuildingTypeList}
           disabledOptions={disabledlargeBuildingTypeOptions}
           isValid={!!largeBuildingType}
+          data-cy="building-range-selector"
         />
       </div>
       <div className="register-room-building-selector-wrapper">
@@ -169,6 +170,7 @@ const RegisterRoomBuilding: React.FC = () => {
           disabled={!largeBuildingType}
           options={detailBuildingOptions}
           isValid={!!buildingType}
+          data-cy="building-type-selector"
         />
       </div>
 
@@ -181,6 +183,7 @@ const RegisterRoomBuilding: React.FC = () => {
               value={roomType}
               onChange={onChangeRoomType}
               isValid={!!roomType}
+              data-cy="room-type-radio"
             />
           </div>
           <div className="register-room-is-setup-for-guest-radio">
@@ -190,6 +193,7 @@ const RegisterRoomBuilding: React.FC = () => {
               onChange={onChangeIsSetUpForGuest}
               options={isSetUpForGuestOptions}
               isValid={isSetUpForGuest !== null}
+              data-cy="is-setup-for-guest-radio"
             />
           </div>
         </>
