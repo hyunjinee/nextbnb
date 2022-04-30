@@ -40,6 +40,7 @@ module.exports = {
     ],
     'react/function-component-definition': 'off',
     'no-use-before-define': 'off',
+    'no-unused-expression': 'off',
     'no-undef': 'off',
     'react/react-in-jsx-scope': 'off', // react를 사용하여도 React를 꼭 import 하지 않아도된다.
     'react/jsx-props-no-spreading': 'off', // props를 스프레드 할 수 있다.
@@ -49,6 +50,7 @@ module.exports = {
     'no-param-reassign': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'newline-per-chained-call': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
