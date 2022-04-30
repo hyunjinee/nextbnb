@@ -32,6 +32,7 @@ const HeaderUserProfile: React.FC = () => {
       }}
     >
       <button
+        style={{ marginRight: '80px' }}
         className="header-user-profile"
         type="button"
         onClick={() => {
