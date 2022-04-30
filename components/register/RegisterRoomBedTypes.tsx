@@ -101,6 +101,7 @@ const RegisterRoomBedTypes: React.FC<IProps> = ({ bedroom }) => {
                 e.target.value as BedType,
               ])
             }
+            data-cy="bed-type-selector"
           />
         </div>
       )}

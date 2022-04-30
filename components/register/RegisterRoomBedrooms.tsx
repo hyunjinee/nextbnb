@@ -52,6 +52,7 @@ const RegisterRoomBedrooms: React.FC = () => {
           label="최대 숙박 인원"
           value={maximumGuestCount}
           onChange={onChangeMaximumGuestCount}
+          data-cy="bedroom-sleep-count"
         />
       </div>
       <div className="register-room-bedroom-count-wrapper">
@@ -62,13 +63,19 @@ const RegisterRoomBedrooms: React.FC = () => {
           label="게스트가 사용할 수 있는 침실은 몇 개인가요?"
           options={bedroomCountList}
           isValid={!!bedroomCount}
+          data-cy="bedroom-selector"
         />
       </div>
       <div className="register-room-bed-count-wrapper">
         <p className="register-room-bed-count-label">
           게스트가 사용할 수 있는 침대는 몇 개인가요?
         </p>
-        <Counter label="침대" value={bedCount} onChange={onChangeBedCount} />
+        <Counter
+          label="침대"
+          value={bedCount}
+          onChange={onChangeBedCount}
+          data-cy="bedroom-bed-count"
+        />
       </div>
       <h4>침대유형</h4>
       <p className="register-room-bed-type-info">

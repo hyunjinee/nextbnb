@@ -34,7 +34,7 @@ const RegisterRoomDate: React.FC = () => {
       <div className="register-room-date-wrapper">
         <div className="register-room-start-date">
           <label>
-            <span>예약 시작일</span>
+            <span data-cy="register-room-start-date">예약 시작일</span>
             <DatePicker
               selected={dateStartDate}
               startDate={dateStartDate}
@@ -48,7 +48,7 @@ const RegisterRoomDate: React.FC = () => {
         </div>
         <div className="register-room-end-date">
           <label>
-            <span>예약 마감일</span>
+            <span data-cy="register-room-end-date">예약 마감일</span>
             <DatePicker
               selected={dateEndDate}
               startDate={dateStartDate}

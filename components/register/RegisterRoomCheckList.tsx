@@ -34,9 +34,8 @@ const RegisterRoomCheckList: React.FC = () => {
     } = registerRoom;
     if (
       !isBuildingTypeActived ||
-      !maximumGuestCount ||
-      !bedroomCount ||
-      !bedCount
+      !maximumGuestCount
+      // !bedroomCount || !bedCount
     ) {
       return false;
     }
