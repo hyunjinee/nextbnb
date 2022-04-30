@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import React from 'react';
 import styled, { css } from 'styled-components';
+
 import palette from '../../styles/palette';
 import { useSelector } from '../../store';
 import WarningIcon from '../../public/static/svg/common/warning.svg';

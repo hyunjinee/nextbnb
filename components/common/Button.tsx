@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+
 import palette from '../../styles/palette';
 
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
