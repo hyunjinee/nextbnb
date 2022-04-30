@@ -7,6 +7,12 @@ interface IProps {
   showMap: boolean;
   setShowMap: React.Dispatch<React.SetStateAction<boolean>>;
 }
+declare global {
+  interface Window {
+    google: any;
+    initMap: any;
+  }
+}
 
 const loadMapScript = () => {
   return new Promise<void>((resolve) => {
