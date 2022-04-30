@@ -7,6 +7,7 @@ interface IProps {
   showMap: boolean;
   setShowMap: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 declare global {
   interface Window {
     google: any;
@@ -41,7 +42,7 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
 
   window.initMap = () => {
     if (mapRef.current) {
-      const map = new google.maps.Map(mapRef.current, {
+      const map = new window.google.maps.Map(mapRef.current, {
         center: {
           lat: currentLocation.latitude,
           lng: currentLocation.longitude,
@@ -49,7 +50,7 @@ const RoomListMap: React.FC<IProps> = ({ setShowMap }) => {
         zoom: 14,
       });
       rooms.forEach((room) => {
-        const marker = new google.maps.Marker({
+        const marker = new window.google.maps.Marker({
           position: { lat: room.latitude, lng: room.longitude },
           map,
         });
